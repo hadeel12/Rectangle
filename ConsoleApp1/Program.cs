@@ -46,8 +46,7 @@ namespace ConsoleApp1
             Console.WriteLine("----------------");
             Rctangle.maxPerimeter(rctangle1.Perimeter(), rctangle3.Perimeter());
             Rctangle.maxArea(rctangle1.Area(), rctangle2.Area());
-            Rctangle rectangle = Rctangle.triangleHaveMaxArea(rctangle1, rctangle2, rctangle3);
-            Console.WriteLine("the lager rectangle area " + rectangle.Area());
+            Console.WriteLine("the lager rectangle area " + Rctangle.getMaxArea(rctangle1, rctangle2, rctangle3));
             #endregion
 
 
@@ -58,77 +57,92 @@ namespace ConsoleApp1
 
     public class Rctangle
     {
-        public int length;
-        public int height;
+        private int width;
+        private int height;
 
         public Rctangle()
         {
-            length = 0;
+            width = 0;
             height = 0;
         }
 
         public Rctangle(int length, int height)
         {
-            this.length = length;
+            this.width = length;
+            this.height = height;
+        }
+
+
+        public int getWidth()
+        {
+            return this.width;
+        }
+
+        public void setWidth(int width)
+        {
+            this.width = width;
+        }
+
+        public int getHeight()
+        {
+            return this.height;
+        }
+
+        public void setHeight(int height)
+        {
             this.height = height;
         }
 
         public void printArea()
         {
-            int area = this.length * this.height;
-            Console.WriteLine(area);
+            Console.WriteLine(this.Area());
         }
 
         public void printPerimeter()
         {
-            int perimeter = 2 * (this.length+this.height);
-            Console.WriteLine(perimeter);
+            Console.WriteLine(this.Perimeter());
         }
 
         public int Area()
         {
-            int area = this.length * this.height;
-            return area;
+            return this.width * this.height;
         }
 
         public int Perimeter()
         {
-            int perimeter = 2 * (this.length + this.height);
-            return perimeter;
+            return 2 * (this.width + this.height);
         }
 
         public static void maxArea(int area1, int area2)
         {
             if (area1 > area2)
+            {
                 Console.WriteLine("the max area is " + area1);
+            }
             else
+            {
                 Console.WriteLine("the max area is " + area2);
+            }
 
         }
 
         public static void maxPerimeter(int perimeter1, int perimeter2)
         {
             if (perimeter1 > perimeter2)
+            {
                 Console.WriteLine("the max Perimeter is " + perimeter1);
+            }
             else
+            {
                 Console.WriteLine("the max Perimeter is " + perimeter2);
+            }
 
         }
 
-
-        public static Rctangle triangleHaveMaxArea(Rctangle rctangle1, Rctangle rctangle2, Rctangle rctangle3)
+        public static int getMaxArea(Rctangle rctangle1, Rctangle rctangle2, Rctangle rctangle3)
         {
-          
-            if (rctangle1.Area() > rctangle2.Area() && rctangle1.Area() > rctangle3.Area())
-                return rctangle1;
-            else if (rctangle2.Area() > rctangle1.Area() && rctangle2.Area() > rctangle3.Area())
-                return rctangle2;
-
-            else
-                return rctangle3;
-
+            return Math.Max(rctangle1.Area(), Math.Max(rctangle2.Area(), rctangle3.Area()));
         }
-
 
     }
 }
